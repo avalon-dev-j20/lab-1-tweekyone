@@ -7,11 +7,11 @@ public class Point {
     /**
      * Абсцисса точки.
      */
-    private final int x;
+    private final Number x;
     /**
      * Ордината точки.
      */
-    private final int y;
+    private final Number y;
 
     /**
      * Основной конструктор класса.
@@ -19,7 +19,7 @@ public class Point {
      * @param x абсцисса точки
      * @param y ордината точки
      */
-    public Point(int x, int y) {
+    public Point(Number x, Number y) {
         this.x = x;
         this.y = y;
     }
@@ -30,7 +30,7 @@ public class Point {
      * @return x-координата точки.
      */
     public int getX() {
-        return x;
+        return x.intValue();
     }
 
     /**
@@ -39,7 +39,7 @@ public class Point {
      * @return y-координата точки.
      */
     public int getY() {
-        return y;
+        return y.intValue();
     }
 
     /**
@@ -49,9 +49,9 @@ public class Point {
      *              дистанцию.
      * @return дистанция между точками
      */
-    public double distanceTo(Point point) {
-        float dx = x - point.x;
-        float dy = y - point.y;
+    public <Type extends Number> double distanceTo(Point point) {
+        float dx = x.floatValue() - point.x.floatValue();
+        float dy = y.floatValue() - point.y.floatValue();
         return Math.sqrt(dx * dx + dy * dy);
     }
 }

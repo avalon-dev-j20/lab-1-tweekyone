@@ -14,9 +14,9 @@ public final class Numbers {
      * @param values массив чисел
      * @return сумма элементов массива
      */
-    public static int sum(int[] values) {
-        int sum = 0;
-        for (int value : values) sum += value;
+    public static <Type extends Number> Integer sum(Integer[] values) {
+        Integer sum = 0;
+        for (Integer value : values) sum += value;
         return sum;
     }
 
@@ -24,10 +24,11 @@ public final class Numbers {
      * Выполняет поиск среднего арифметического заданного
      * массива чисел.
      *
+     * @param <Type>
      * @param values массив значений
      * @return среднее арифметическое с точностью до типа {@code double}.
      */
-    public static double avg(int[] values) {
+    public static <Type extends Number> double avg(Integer[] values) {
         return (double) sum(values) / values.length;
     }
 
@@ -38,7 +39,7 @@ public final class Numbers {
      * @param b второе значение
      * @return большее из двух значений
      */
-    public static int max(int a, int b) {
+    public static <Type extends Number> Integer max(Integer a, Integer b) {
         return a > b ? a : b;
     }
 
@@ -48,12 +49,12 @@ public final class Numbers {
      * @param values массив значений
      * @return максимальное значение массива
      */
-    public static int max(int[] values) {
-        int result = values[0];
+    public static <Type extends Number> int max(Integer[] values) {
+        Integer result = values[0];
         for (int i = 1; i < values.length; i++) {
             result = max(result, values[i]);
         }
-        return result;
+        return (int) result;
     }
 
     /**
@@ -63,7 +64,7 @@ public final class Numbers {
      * @param b второе значение
      * @return меньшее из дух значений
      */
-    public static int min(int a, int b) {
+    public static <Type extends Number> Integer min(Integer a, Integer b) {
         return a < b ? a : b;
     }
 
@@ -73,11 +74,11 @@ public final class Numbers {
      * @param values массив значений
      * @return минимальное значение массива
      */
-    public static int min(int[] values) {
-        int result = values[0];
+    public static <Type extends Number> int min(Integer[] values) {
+        Integer result = values[0];
         for (int i = 1; i < values.length; i++) {
             result = min(result, values[i]);
         }
-        return result;
+        return (int) result;
     }
 }
