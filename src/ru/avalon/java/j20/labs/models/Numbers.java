@@ -14,9 +14,9 @@ public final class Numbers {
      * @param values массив чисел
      * @return сумма элементов массива
      */
-    public static <Type extends Number> Integer sum(Integer[] values) {
-        Integer sum = 0;
-        for (Integer value : values) sum += value;
+    public static <Type extends Number> double sum(Type[] values) {
+        double sum = 0;
+        for (Type value : values) sum += value.doubleValue();
         return sum;
     }
 
@@ -29,7 +29,7 @@ public final class Numbers {
      * @return среднее арифметическое с точностью до типа {@code double}.
      */
     public static <Type extends Number> double avg(Integer[] values) {
-        return (double) sum(values) / values.length;
+        return sum(values) / values.length;
     }
 
     /**

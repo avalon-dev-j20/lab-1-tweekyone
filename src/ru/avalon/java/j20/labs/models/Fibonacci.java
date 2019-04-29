@@ -20,33 +20,40 @@ import java.util.ArrayList;
  */
 public class Fibonacci implements Iterable<Integer> {
     
-    private static int length;
-    private static List<Integer> fibonacci = new ArrayList<>();
+    private static int length;  
     
     public Fibonacci(int length){
         this.length = length;
-        if (length > 0){
+    }
+    
+    public static int getNumber(int count){
+        int penult = 0;
+        int last = 1;
+        if (count > 1){
+            for (int i = 1; i < count ; i++){
+                int buf = penult;
+                penult = last;
+                last = buf + penult;
+            } return last;
+        }else if (count == 1) return last;
+        else return penult;
+    }
+    
+    
+    public ArrayList<Integer> getNumbers(int length){
+        ArrayList<Integer> fibonacci = new ArrayList<>(length);
+        if (length > 1){
             fibonacci.add(0, 0);
             fibonacci.add(1, 1);
-            if (length > 1){
+            if(length > 1){
                 for (int i = 2; i < length; i++){
                     fibonacci.add(i, fibonacci.get(i - 2) + fibonacci.get(i - 1));
                 }
             }
-        } 
+        }
+        return fibonacci;
     }
     
-    public int getSum(int count){
-        if (count <= length){
-            int sum = 0;
-            for (int i = 0; i < count; i++){
-                sum += fibonacci.get(i);
-            }
-            return sum;
-        } throw new IndexOutOfBoundsException
-        ("Сумма не должна превышать " + length + "!");
-    }
-
     /**
      * Итератор, выполняющий обход последовательности
      * чисел Фибоначчи.
@@ -63,7 +70,7 @@ public class Fibonacci implements Iterable<Integer> {
          */
         @Override
         public boolean hasNext() {
-            return fibonacci.size() > index; 
+            return length >= index; 
         }
 
         /**
@@ -74,7 +81,7 @@ public class Fibonacci implements Iterable<Integer> {
          */
         @Override
         public Integer next() {
-            return fibonacci.get(index++);
+            return getNumber(index++);
         }
     }
 

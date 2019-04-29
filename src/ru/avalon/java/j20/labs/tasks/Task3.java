@@ -35,11 +35,11 @@ public class Task3 implements Task {
          * 4. С использованием отладчика проверьте корректность
          *    выполнения задания.
          */
-        Fibonacci list = new Fibonacci(20);
-        int check = list.getSum(20);
+        Fibonacci fibonacci = new Fibonacci(20);
+        int check = fibonacci.getNumber(20);
         int sum = 0;
         
-        for (int value : list){
+        for (int value : fibonacci){
             sum += value;
         }
         
