@@ -1,5 +1,8 @@
 package ru.avalon.java.j20.labs.tasks;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import ru.avalon.java.j20.labs.Task;
 import ru.avalon.java.j20.labs.core.RandomArrayFactory;
 
@@ -23,11 +26,23 @@ public class Task5 implements Task {
      */
     @Override
     public void run() {
-        final int[] array = arrayFactory.getInstance(20);
+        final Integer[] array = arrayFactory.getInstance(20);
 
-        List<Integer> list = null;
+        List<Integer> list = new ArrayList<>();
 
-        Set<Integer> set = null;
+        Set<Integer> set = new LinkedHashSet<>();
+        
+        //for (int i = 0; i < array.length; i++){
+        //    list.add(i, array[i]);
+        //}
+        
+        //список хранит элементы упорядоченно, добавляя повторяющиеся элементы
+        list.addAll(Arrays.asList(array));
+        
+        //коллекция хранит элементы не упорядоченно, 
+        //не добавляя повторяющиеся элементы
+        set.addAll(Arrays.asList(array));
+        
 
         /**
          * TODO(Студент): Выполните задание №5

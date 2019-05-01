@@ -1,6 +1,8 @@
 package ru.avalon.java.j20.labs.models;
 
 import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Модель получения последовательности чисел Фибоначчи.
@@ -17,13 +19,47 @@ import java.util.Iterator;
  * @see <a href="https://ru.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%B0_%D0%A4%D0%B8%D0%B1%D0%BE%D0%BD%D0%B0%D1%87%D1%87%D0%B8">Числа Фибоначчи</a>
  */
 public class Fibonacci implements Iterable<Integer> {
-
+    
+    private static int length;  
+    
+    public Fibonacci(int length){
+        this.length = length;
+    }
+    
+    public static int getNumber(int count){
+        int penult = 0;
+        int last = 1;
+        if (count > 1){
+            for (int i = 1; i < count ; i++){
+                int buf = penult;
+                penult = last;
+                last = buf + penult;
+            } return last;
+        }else if (count == 1) return last;
+        else return penult;
+    }
+    
+    
+    public ArrayList<Integer> getNumbers(int length){
+        ArrayList<Integer> fibonacci = new ArrayList<>(length);
+        if (length > 1){
+            fibonacci.add(0, 0);
+            fibonacci.add(1, 1);
+            if(length > 1){
+                for (int i = 2; i < length; i++){
+                    fibonacci.add(i, fibonacci.get(i - 2) + fibonacci.get(i - 1));
+                }
+            }
+        }
+        return fibonacci;
+    }
+    
     /**
      * Итератор, выполняющий обход последовательности
      * чисел Фибоначчи.
      */
     private static class FibonacciIterator implements Iterator<Integer> {
-
+        int index;
         /**
          * Определяет, есть ли следующее значение
          * последовательности чисел Фибоначчи.
@@ -34,7 +70,7 @@ public class Fibonacci implements Iterable<Integer> {
          */
         @Override
         public boolean hasNext() {
-            throw new UnsupportedOperationException("Not implemented yet!");
+            return length >= index; 
         }
 
         /**
@@ -45,7 +81,7 @@ public class Fibonacci implements Iterable<Integer> {
          */
         @Override
         public Integer next() {
-            throw new UnsupportedOperationException("Not implemented yet!");
+            return getNumber(index++);
         }
     }
 
